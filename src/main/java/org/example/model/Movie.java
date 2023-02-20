@@ -2,6 +2,7 @@ package org.example.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="Movie")
@@ -61,12 +62,24 @@ public class Movie {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return id == movie.id && year_of_production == movie.year_of_production && Objects.equals(name, movie.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, year_of_production);
+    }
+
+    @Override
     public String toString() {
         return "Movie{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", year_of_production=" + year_of_production +
-                ", actors=" + actors +
                 '}';
     }
 }

@@ -27,6 +27,12 @@ public class App
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
+            //////////запрос с помощью HQL
+            /*List<Movie> movies = session.createQuery("select m from Movie m", Movie.class)
+                    .getResultList();
+
+            System.out.println(movies);*/
+
             //////////Удаление актера 2 из фильма 1 (с двух сторон)
             /*Actor actor = session.get(Actor.class, 2);
             System.out.println(actor.getMovies());
